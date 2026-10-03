@@ -7,14 +7,20 @@ export default function VoteCard({ menu, isVotingClosed, onVote }) {
     <div className="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden flex flex-col justify-between hover:border-slate-600 transition-colors shadow-lg">
       {/* รูปภาพใช้ object-contain ไม่โดนตัด */}
       <div className="relative h-44 w-full bg-slate-950/80 flex items-center justify-center p-2">
-        <img
-          src={menu.image}
-          alt={menu.name}
-          onError={(e) => {
-            e.target.src = DEFAULT_IMAGE;
-          }}
-          className="w-full h-full object-contain"
-        />
+        {menu.image ? (
+          <img
+            src={menu.image}
+            alt={menu.name}
+            onError={(e) => {
+              e.target.src = DEFAULT_IMAGE;
+            }}
+            className="w-full h-full object-contain"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-6xl">
+            {menu.icon || "🍽️"}
+          </div>
+        )}
         <div className="absolute top-3 right-3 bg-slate-900/90 backdrop-blur-md border border-slate-700 px-3 py-1 rounded-full text-xs font-bold text-amber-400 shadow-md">
           {menu.price} ฿
         </div>
