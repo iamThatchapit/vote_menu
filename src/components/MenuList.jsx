@@ -28,14 +28,20 @@ export default function MenuList({ menus, onStartVote }) {
               key={item.id}
               className="flex items-center gap-3 bg-slate-900 p-3 rounded-xl border border-slate-700/60"
             >
-              <img
-                src={item.image}
-                alt={item.name}
-                onError={(e) => {
-                  e.target.src = DEFAULT_IMAGE;
-                }}
-                className="w-12 h-12 rounded-lg object-cover bg-slate-800 flex-shrink-0"
-              />
+              {item.image ? (
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  onError={(e) => {
+                    e.target.src = DEFAULT_IMAGE;
+                  }}
+                  className="w-12 h-12 rounded-lg object-cover bg-slate-800 flex-shrink-0"
+                />
+              ) : (
+                <div className="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center text-2xl flex-shrink-0 border border-slate-700">
+                  {item.icon || "🍽️"}
+                </div>
+              )}
               <div className="flex-1 min-w-0">
                 <p className="font-semibold text-sm truncate text-slate-100">
                   {item.name}

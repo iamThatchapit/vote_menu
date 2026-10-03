@@ -1,9 +1,19 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MenuForm from "./components/MenuForm";
 import MenuList from "./components/MenuList";
 import VoteCard from "./components/VoteCard";
 import VoteResultSummary from "./components/VoteResultSummary";
+
+// รายการเมนูแนะนำยอดฮิต
+const RECOMMENDED_MENUS = [
+  { name: "ข้าวมันไก่", price: 50, icon: "🍗" },
+  { name: "กะเพราหมูกรอบ + ไข่ดาว", price: 65, icon: "🍳" },
+  { name: "ส้มตำ คอหมูย่าง", price: 80, icon: "🥗" },
+  { name: "ก๋วยเตี๋ยวต้มยำ", price: 55, icon: "🍜" },
+  { name: "ชาบู / หมูกระทะ", price: 219, icon: "🍲" },
+  { name: "พิซซ่า", price: 199, icon: "🍕" },
+];
 
 export default function App() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -21,6 +31,26 @@ export default function App() {
 
   const handleAddMenu = (newMenu) => {
     setMenus((prev) => [...prev, newMenu]);
+  };
+
+  // ฟังก์ชันเพิ่มเมนูจากรายการแนะนำ
+  const handleAddQuickMenu = (item) => {
+    if (menus.some((m) => m.name.toLowerCase() === item.name.toLowerCase())) {
+      alert(`เมนู "${item.name}" มีอยู่ในรายการโหวตแล้ว!`);
+      return;
+    }
+
+    setMenus((prev) => [
+      ...prev,
+      {
+        id: String(prev.length + 1) + "_" + item.name,
+        name: item.name,
+        price: item.price || 0,
+        image: null,
+        icon: item.icon,
+        votes: 0,
+      },
+    ]);
   };
 
   // โหวตได้เรื่อยๆ สำหรับส่งต่อมือถือ
@@ -126,10 +156,40 @@ export default function App() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
-              className="grid md:grid-cols-2 gap-6"
+              className="space-y-6"
             >
-              <MenuForm onAddMenu={handleAddMenu} />
-              <MenuList menus={menus} onStartVote={() => setCurrentStep(2)} />
+              {/* แถบเมนูแนะนำยอดฮิต (กดเพื่อเพิ่มเข้าสู่การโหวตได้ทันที) */}
+              <div className="bg-slate-800/80 border border-slate-700 p-4 rounded-xl shadow-lg">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-semibold text-amber-300 flex items-center gap-1.5">
+                    ✨ เมนูแนะนำยอดฮิต (คลิกเพื่อเพิ่มทันที)
+                  </span>
+                  <span className="text-xs text-slate-400">
+                    มีให้เลือก {RECOMMENDED_MENUS.length} เมนู
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {RECOMMENDED_MENUS.map((item, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => handleAddQuickMenu(item)}
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-700 hover:bg-orange-500/20 text-slate-200 hover:text-orange-300 border border-slate-600 hover:border-orange-500/50 rounded-lg text-xs font-medium transition-all shadow-sm active:scale-95"
+                    >
+                      <span>{item.icon}</span>
+                      <span>{item.name}</span>
+                      <span className="text-[10px] text-slate-400">({item.price}฿)</span>
+                      <span className="text-orange-400 font-bold ml-1">+</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* คอลัมน์ฟอร์มกรอกเอง และ รายการเมนูที่เพิ่มแล้ว */}
+              <div className="grid md:grid-cols-2 gap-6">
+                <MenuForm onAddMenu={handleAddMenu} />
+                <MenuList menus={menus} onStartVote={() => setCurrentStep(2)} />
+              </div>
             </motion.div>
           ) : (
             <motion.div
