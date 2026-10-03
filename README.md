@@ -1,16 +1,74 @@
-# React + Vite
+# 🍲 WhatToEat (วันนี้กินอะไรดี?)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> แอปพลิเคชันช่วยตัดสินใจเลือกร้านอาหารและเมนูผ่านระบบโหวต หมดปัญหาถกเถียงกันว่า "วันนี้จะกินอะไรดี?"
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 💡 ที่มาของโปรเจกต์ (Problem Statement)
 
-## React Compiler
+คำถามโลกแตกทุกพักเที่ยงหรือหลังเลิกงานคือ **"วันนี้จะกินอะไรดี?"** ต่างคนต่างมีร้านในใจหรือคิดไม่ออก โปรเจกต์นี้จึงถูกสร้างขึ้นเพื่อช่วยให้กลุ่มเพื่อน ครอบครัว หรือทีมงาน สามารถลงความเห็นโหวตเลือกร้านอาหารได้อย่างรวดเร็ว สนุก และยุติธรรม
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ ฟีเจอร์หลัก (Features)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🗳️ **ระบบโหวตอาหาร:** สร้างห้องโหวตแล้วแชร์ลิงก์ให้เพื่อนเข้ามาลงคะแนนเลือกร้านได้ง่ายๆ
+- 🍕 **เพิ่มตัวเลือกได้อิสระ:** เพิ่มเมนูหรือร้านอาหารที่อยากกินเข้าร่วมการโหวต
+- ⏱️ **ผลโหวตแบบเรียลไทม์:** แสดงผลลัพธ์ร้านที่ได้คะแนนสูงสุดทันทีเมื่อปิดโหวต
+- 📱 **Responsive Design:** ใช้งานได้ลื่นไหลทั้งบนมือถือ แท็บเล็ต และคอมพิวเตอร์
+
+---
+
+## 🛠️ เทคโนโลยีที่ใช้ (Tech Stack)
+
+- **Frontend Framework/Library:** React / Vue / Svelte
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Linter:** ESLint
+- **Styling:** Tailwind CSS / CSS Modules
+
+---
+
+## 🚀 การติดตั้งและเริ่มใช้งาน (Getting Started)
+
+### ข้อกำหนดก่อนเริ่ม (Prerequisites)
+
+- [Node.js](https://nodejs.org/) (เวอร์ชัน 18 ขึ้นไป)
+- `npm` หรือ `yarn` หรือ `pnpm`
+
+### ขั้นตอนการติดตั้ง (Installation)
+
+1. **Clone Repository นี้ลงเครื่อง:**
+
+   ```bash
+   git clone https://github.com/your-username/what-to-eat.git
+   cd what-to-eat
+   ```
+
+2. **ติดตั้ง Dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **เริ่มใช้งาน Development Server:**
+   ```bash
+   npm run dev
+   ```
+   เปิดเบราว์เซอร์ไปที่ `http://localhost:5173` เพื่อดูหน้าเว็บ
+
+---
+
+## 📜 คำสั่ง Scripts ที่มีในโปรเจกต์ (Available Scripts)
+
+| คำสั่ง            | คำอธิบาย                                        |
+| :---------------- | :---------------------------------------------- |
+| `npm run dev`     | รันโปรเจกต์ในโหมด Development (Vite Dev Server) |
+| `npm run build`   | คอมไพล์และ Build โปรเจกต์สำหรับ Production      |
+| `npm run preview` | พรีวิวไฟล์ Build Local ก่อนอัปโหลดจริง          |
+| `npm run lint`    | ตรวจสอบคุณภาพโค้ดด้วย ESLint                    |
+
+---
+
+## 🤝 การมีส่วนร่วม (Contributing)
+
+ยินดีรับคำแนะนำและ Pull Request เสมอ! หากพบข้อผิดพลาดหรือมีไอเดียฟีเจอร์ใหม่ๆ สามารถเปิด [Issue](https://github.com/your-username/what-to-eat/issues) ได้เลยครับ
